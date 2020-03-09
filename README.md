@@ -1,24 +1,16 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Para atender o teste tecnico da lemmoney
+Antes de começar precisa de ter o docker e docker composer installados para rodar na maquina local
+Processo normal para rodar uma aplicação rails localmente
 
-Things you may want to cover:
+* Ruby version: 
+  ruby 2.6.2p47
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
+* System dependencies:
+  Docker-Composer  
+  ```docker-compose -f docker-compose.yml up```
 
 * How to run the test suite
+  rspec
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
