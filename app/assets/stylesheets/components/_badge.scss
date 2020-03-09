@@ -1,0 +1,22 @@
+.badge {
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  color: #fff;
+  min-width: 19px;
+  display: inline-block;
+  width: 100%;
+  font-size: .9rem;
+  letter-spacing: 1px;
+  border-radius: 0.25rem;
+  line-height: 1;
+  &.badge-state {
+    font-size: 12px !important;
+    letter-spacing: 2px;
+    line-height: 1 !important;
+  }
+  &.state-enabled {
+    background-color: #3ac47d;
+    
+  }
+}

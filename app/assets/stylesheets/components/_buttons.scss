@@ -1,0 +1,77 @@
+@import '../configurations/variables.scss';
+
+.btn {
+  padding: 0.25rem 2.5rem;
+  font-size: 0.8rem;
+  line-height: 2;
+  border-radius: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all .2s linear;
+  border: none;
+  &.btn-link {
+    border: 1px solid $color_default;
+    color: #FFF;
+    display: inline-block;
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: 600;
+    border-radius: 1rem;
+    background-color: $color_default;
+    box-shadow: 0 0 0 0 rgba($color: #000000, $alpha: 0);
+    &:hover {
+      color: #FFF;
+      background-color: darken($color_default, 5%);
+      box-shadow: 0 2px 5px 0 rgba($color: #000000, $alpha: 0.2);
+    }
+  }
+  &.btn-cancel {
+    display: inline-block;
+    line-height: 30px;
+    font-weight: bold;
+    transition: all .2s linear;
+    text-align: center;
+    border: 1px solid #FFF;
+    color: #ff586b;
+    border-radius: 1.5rem;
+    &:hover {
+      background-color: #ff586b;
+      color: #FFF;
+    }
+  }
+  &.btn-primary {
+    background-color: #009da0;
+    font-weight: bold;
+    color: #FFF;
+    line-height: 30px;
+    min-width: 160px;
+    border: 1px solid #009da0;
+    border-radius: 1.5rem;
+    &:hover {
+      background-color: darken(#009da0, 10%);
+      box-shadow: 0 2px 5px 0 rgba($color: #000000, $alpha: 0.2);
+    }
+  }
+  &.btn-edit,
+  &.btn-delete{
+    padding: 0;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    margin-left: 5px;
+    border-radius: 50%;
+    transition: all .2s linear;
+    color: #FFF;
+    text-align: center;
+    transform: scale(1);
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+  &.btn-edit {
+    background-image: linear-gradient(45deg,#159957,#155799);
+  }
+  &.btn-delete{
+    background-image: linear-gradient(45deg,#ee0979,#ff6a00);
+  }
+}

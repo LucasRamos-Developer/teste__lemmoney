@@ -1,0 +1,53 @@
+I"{(function() {
+  LMY.Form = {
+    target: '',
+    initialize: function(form_id) {
+      LMY.Form.target = $(form_id);
+      return LMY.Form.listener_ajax();
+    },
+    submit: function() {
+      var $form;
+      console.log('submit', LMY.Form.required_error());
+      $form = LMY.Form.target;
+      if (LMY.Form.required_error() > 0) {
+        return $form.submit();
+      }
+    },
+    cancel: function() {
+      return $.fancybox.close();
+    },
+    listener_ajax: function() {
+      var $form, $modal;
+      $form = LMY.Form.target;
+      $modal = $form.closest('.inner-modal');
+      $form.on('ajax:beforeSend', function(xhr, data) {
+        return $modal.addClass('ajax-loading');
+      });
+      return $form.on('ajax:success', function(xhr, data) {
+        toastr.success('Oferta adicionada com sucesso!!!');
+        return setTimeout(function() {
+          return Turbolinks.visit(window.location.pathname);
+        }, 1000);
+      });
+    },
+    required_error: function() {
+      var $form, count;
+      console.log('required');
+      $form = LMY.Form.target;
+      count = 0;
+      $form.find('.required').each(function(i, val) {
+        var value;
+        value = $(this).val();
+        if (value.length === 0) {
+          $(this).addClass('error');
+          count++;
+        } else {
+          $(this).removeClass('error');
+        }
+      });
+      return count;
+    }
+  };
+
+}).call(this);
+:ET

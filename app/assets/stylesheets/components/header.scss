@@ -1,0 +1,37 @@
+#header {
+  box-shadow: 0 0 15px 0 rgba(0,0,0,0.1);
+  padding: 15px 0;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAlJyBoZWlnaHQ9JzEwMCUnIHZpZXdCb3g9JzAgMCAxNjAwIDgwMCc+PGcgc3Ryb2tlPScjMDhhZWVhJyBzdHJva2Utd2lkdGg9JzAnIHN0cm9rZS1vcGFjaXR5PScwLjA1JyA+PGNpcmNsZSBmaWxsPScjMDhhZWVhJyBjeD0nMCcgY3k9JzAnIHI9JzE4MDAnLz48Y2lyY2xlIGZpbGw9JyMwMGIyZWInIGN4PScwJyBjeT0nMCcgcj0nMTcwMCcvPjxjaXJjbGUgZmlsbD0nIzAwYjZlYycgY3g9JzAnIGN5PScwJyByPScxNjAwJy8+PGNpcmNsZSBmaWxsPScjMDBiYWVjJyBjeD0nMCcgY3k9JzAnIHI9JzE1MDAnLz48Y2lyY2xlIGZpbGw9JyMwMGJkZWInIGN4PScwJyBjeT0nMCcgcj0nMTQwMCcvPjxjaXJjbGUgZmlsbD0nIzAwYzFlOScgY3g9JzAnIGN5PScwJyByPScxMzAwJy8+PGNpcmNsZSBmaWxsPScjMDBjNWU3JyBjeD0nMCcgY3k9JzAnIHI9JzEyMDAnLz48Y2lyY2xlIGZpbGw9JyMwMGM4ZTQnIGN4PScwJyBjeT0nMCcgcj0nMTEwMCcvPjxjaXJjbGUgZmlsbD0nIzAwY2JlMCcgY3g9JzAnIGN5PScwJyByPScxMDAwJy8+PGNpcmNsZSBmaWxsPScjMDBjZWRjJyBjeD0nMCcgY3k9JzAnIHI9JzkwMCcvPjxjaXJjbGUgZmlsbD0nIzAwZDFkNycgY3g9JzAnIGN5PScwJyByPSc4MDAnLz48Y2lyY2xlIGZpbGw9JyMwMGQ0ZDInIGN4PScwJyBjeT0nMCcgcj0nNzAwJy8+PGNpcmNsZSBmaWxsPScjMDBkN2NjJyBjeD0nMCcgY3k9JzAnIHI9JzYwMCcvPjxjaXJjbGUgZmlsbD0nIzAwZGFjNicgY3g9JzAnIGN5PScwJyByPSc1MDAnLz48Y2lyY2xlIGZpbGw9JyMwMGRjYmYnIGN4PScwJyBjeT0nMCcgcj0nNDAwJy8+PGNpcmNsZSBmaWxsPScjMDBkZmI4JyBjeD0nMCcgY3k9JzAnIHI9JzMwMCcvPjxjaXJjbGUgZmlsbD0nIzAwZTFiMScgY3g9JzAnIGN5PScwJyByPScyMDAnLz48Y2lyY2xlIGZpbGw9JyMyMGUzYTknIGN4PScwJyBjeT0nMCcgcj0nMTAwJy8+PC9nPjwvc3ZnPg==');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  > .contaier {
+    z-index: 1;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+  }
+  .brand {
+    img {
+      width: auto;
+      height: 42px;
+    }
+    span {
+      display: inline-block;
+      width: 100%;
+      color: #EEE;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 5px;
+      text-align: left;
+    }
+  }
+}

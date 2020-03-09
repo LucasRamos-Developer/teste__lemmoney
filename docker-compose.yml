@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  
+  postgres:
+    mem_limit: 1Gb
+    image: 'postgres:9.5'
+    volumes_from:
+      - data_database
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: lemmoney
+      POSTGRES_PASSWORD: lemmoney
+
+  data_database:
+    image: cogniteev/echo
+    command: echo 'Data Container for Postgres'
+    volumes:
+      - /var/lib/postgresql/data

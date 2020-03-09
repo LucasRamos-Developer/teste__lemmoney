@@ -1,0 +1,49 @@
+I"(function() {
+  LMY.Form = {
+    target: '',
+    initialize: function(form_id) {
+      LMY.Form.target = $(form_id);
+      return LMY.Form.listener_ajax();
+    },
+    submit: function() {
+      var $form;
+      $form = LMY.Form.target;
+      if (LMY.Form.required > 0) {
+        return $form.submit();
+      }
+    },
+    cancel: function() {
+      return $.fancybox.close();
+    },
+    listener_ajax: function() {
+      var $form, $modal;
+      $form = LMY.Form.target;
+      $modal = $form.closest('.inner-modal');
+      $form.on('ajax:beforeSend', function(xhr, data) {
+        return $modal.addClass('ajax-loading');
+      });
+      return $form.on('ajax:success', function(xhr, data) {
+        toastr.success('Oferta adicionada com sucesso!!!');
+        return setTimeout(function() {
+          return Turbolinks.visit(window.location.pathname);
+        }, 1000);
+      });
+    },
+    required: function() {
+      var $form, count_;
+      $form = LMY.Form.target;
+      count_ = 0;
+      $form.find('.form-control.required').each(function(i, val) {
+        if ($(this).val().length === 0) {
+          $(this).addClass('error');
+          return count_++;
+        } else {
+          return $(this).removeClass('error');
+        }
+      });
+      return count_;
+    }
+  };
+
+}).call(this);
+:ET

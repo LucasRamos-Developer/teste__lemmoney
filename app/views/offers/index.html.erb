@@ -1,0 +1,63 @@
+<div class="container-fluid">
+  <p id="notice"><%= notice %></p>
+
+  <div class="panel">
+    <div class="panel-header">
+      <div class="row align-items-center">
+        <div class="col-lg-10">
+          <h1>Lista de Ofertas</h1>
+        </div>
+        <div class="col-lg-2">
+          <div class="actions">
+            <%= link_to_fancybox('Adicionar', new_offer_path) %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-content">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>URL</th>
+            <th width="100px" class="center">Situação</th>
+            <th width="200px"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @offers.each do |offer| %>
+            <tr>
+              <td class="name">
+                <span class="ellipse" title="<%= offer.advertiser_name %>">
+                  <%= offer.advertiser_name %>
+                </span>
+              </td>
+              <td class="url">
+                <span class="ellipse" title="<%= offer.url %>">
+                  <%= offer.url %>
+                </span>
+              </td>
+              <td class="state center">
+                <span class="ellipse" title="<%= offer.state_label %>">
+                  <span class="badge badge-state state-<%= offer.state_tag_class %>">
+                    <%= offer.state_label %>
+                  </span>
+                </span>
+              </td>
+              <td class="actions">
+                <%= link_to_fancybox('Editar', edit_offer_path(offer), 'btn btn-edit') %>
+                <%= link_to(offer, {class: "btn btn-delete", method: :delete, remote: true, data: { confirm: 'Você tem certeza que deseja deletar?'}}) do %>
+                  <span class="lnr lnr-trash"></span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+

@@ -1,0 +1,68 @@
+<%= form_for(offer, format: :json, remote: true, html: {id: 'offer-form'}) do |f| %>
+  <% if offer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(offer.errors.count, "error") %> prohibited this offer from being saved:</h2>
+      <ul>
+      <% offer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class='form-wrap'>
+    <div class="row">
+      <div class="col-md-12">
+        <div class='form-group'>
+          <%= f.label :advertiser_name, "Nome <b>*</b>".html_safe %>
+          <%= f.text_field :advertiser_name, class: 'form-control required' %>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class='form-group'>
+          <%= f.label :url, "URL <b>*</b>".html_safe %>
+          <%= f.url_field :url, class: 'form-control required' %>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class='form-group'>
+          <%= f.label :description, "Descrição <b>*</b>".html_safe %>
+          <%= f.text_area :description, class: 'form-control required', rows: 8 %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class='form-group'>
+          <%= f.label :starts_at, "Inicio <b>*</b>".html_safe %>
+          <div class="date-input">
+            <%= f.text_field :starts_at, class: 'form-control required' %>
+            <span class="lnr lnr-calendar-full"></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class='form-group'>
+          <%= f.label :ends_at, "Fim" %>
+          <div class="date-input">
+            <%= f.text_field :ends_at, class: 'form-control' %>
+            <span class="lnr lnr-calendar-full"></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class='form-group'>
+          <label class="mark-checkbox inline">
+            <span class='input'>
+              <%= f.check_box :premium %>
+              <span class="checkmark"></span>
+            </span>
+            <span>Premium?</span>
+          </label>
+        </div>  
+      </div>
+    </div>
+  </div>
+<% end %>
+<script type="text/javascript">
+  LMY.Form.initialize('#offer-form');
+  $('#offer_starts_at').datepicker();
+  $('#offer_ends_at').datepicker();
+</script>

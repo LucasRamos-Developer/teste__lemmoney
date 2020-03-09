@@ -1,0 +1,24 @@
+I"*(function() {
+  LMY.Form = {
+    target: '',
+    initialize: function(form_id) {
+      LMY.Form.target = $(form_id);
+      return LMY.Form.listener_ajax();
+    },
+    submit: function() {
+      var $form;
+      $form = LMY.Form.target;
+      return $form.submit();
+    },
+    listener_ajax: function() {
+      var $form, $modal;
+      $form = LMY.Form.target;
+      $modal = $form.closest('.inner-modal');
+      return $form.on('ajax:beforeSend', function(xhr, data) {
+        return $modal.addClass('ajax-loading');
+      });
+    }
+  };
+
+}).call(this);
+:ET

@@ -1,0 +1,56 @@
+.inner-modal {
+  width: 1024px;
+  height: calc(100vh - 20%);
+  padding: 0 !important;
+  overflow: hidden !important;
+  border-radius: 6px;
+  .panel {
+    margin: 0 !important;
+    position: relative;
+    padding-top: 4rem;
+    border: none !important;
+    min-height: auto;
+    height: 100%;
+    padding-bottom: 4rem;
+    .panel-header {
+      border: none !important;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: #00b95c;
+      color: #FFF;
+    }
+  }
+  &.ajax-loading {
+    position: relative;
+    &::after {
+      content: '';
+      background-color: rgba($color: #fff, $alpha: .8);
+      position: absolute;
+      top: 4rem;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+    }
+    &::before {
+      z-index: 2;
+      content: '';
+      animation: fancybox-rotate 1s linear infinite;
+      background: transparent;
+      border: 4px solid #888;
+      border-bottom-color: #fff;
+      border-radius: 50%;
+      height: 50px;
+      left: 50%;
+      margin: -25px 0 0 -25px;
+      opacity: .7;
+      padding: 0;
+      position: absolute;
+      top: 50%;
+      width: 50px;
+      z-index: 99999;
+    }
+  }
+}

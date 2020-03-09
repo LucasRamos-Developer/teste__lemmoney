@@ -1,0 +1,17 @@
+<div class="<%= inner_class %>">
+  <div class="panel">
+    <div class="panel-header">
+      <div class="row align-items-center">
+        <div class="col-md-12">
+          <h1>Editar Oferta: <i><%= @offer.advertiser_name %></i></h1>
+        </div>
+      </div>
+    </div>
+    <div class="panel-content">
+      <%= render 'form', offer: @offer %>
+    </div>
+    <div class="panel-footer">
+      <%= render partial: "layouts/components/form-panel.footer" %>
+    </div>
+  </div>
+</div>

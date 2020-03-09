@@ -1,0 +1,15 @@
+I"4(function() {
+  LMY.Form = {
+    submit: function(form_id) {
+      var $form;
+      console.log('olha eu aqui');
+      $form = $(form_id);
+      $form.submit();
+      return $form.on('ajax:beforeSend', function(xhr, data) {
+        return $form.addClass('ajax-loading');
+      });
+    }
+  };
+
+}).call(this);
+:ET

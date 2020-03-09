@@ -1,0 +1,247 @@
+  [1m[35m (349.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "lemmoney_test"[0m
+  [1m[35m (2057.7ms)[0m  [1m[35mCREATE DATABASE "lemmoney_test" ENCODING = 'utf8'[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (151.4ms)[0m  [1m[35mCREATE TABLE "offers" ("id" serial primary key, "name" character varying, "url" character varying, "description" text, "starts_at" timestamp, "ends_at" timestamp, "premium" boolean DEFAULT 'f', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (144.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (32.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200304220610)[0m
+  [1m[35m (190.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "test"], ["created_at", "2020-03-09 22:45:52.673305"], ["updated_at", "2020-03-09 22:45:52.673305"]]
+  [1m[35m (25.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.6ms)[0m  [1m[35mALTER TABLE "offers" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (1.2ms)[0m  [1m[31mDELETE FROM "offers"[0m
+  [1m[36mFixture Insert (1.4ms)[0m  [1m[32mINSERT INTO "offers" ("created_at", "updated_at", "id") VALUES ('2020-03-09 22:45:52.950516', '2020-03-09 22:45:52.950516', 980190962)[0m
+  [1m[36mFixture Insert (1.0ms)[0m  [1m[32mINSERT INTO "offers" ("created_at", "updated_at", "id") VALUES ('2020-03-09 22:45:52.950516', '2020-03-09 22:45:52.950516', 298486374)[0m
+  [1m[35m (1.5ms)[0m  [1m[34mselect MAX("id") from "offers"[0m
+  [1m[35m (44.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "offers" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+---------------------------
+OfferTest: test_the_enables
+---------------------------
+  [1m[36mOffer Load (1.1ms)[0m  [1m[34mSELECT  "offers".* FROM "offers" WHERE "offers"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.9ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------
+OffersControllerTest: test_should_show_offer
+--------------------------------------------
+  [1m[36mOffer Load (0.5ms)[0m  [1m[34mSELECT  "offers".* FROM "offers" WHERE "offers"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/offers/980190962" for 127.0.0.1 at 2020-03-09 19:45:53 -0300
+Processing by OffersController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mOffer Load (0.5ms)[0m  [1m[34mSELECT  "offers".* FROM "offers" WHERE "offers"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering offers/show.html.erb within layouts/application
+  Rendered offers/show.html.erb within layouts/application (2.7ms)
+  Rendered layouts/components/_header.app.html.erb (0.4ms)
+Completed 200 OK in 2385ms (Views: 2378.5ms | ActiveRecord: 0.5ms)
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------
+OffersControllerTest: test_should_create_offer
+----------------------------------------------
+  [1m[36mOffer Load (0.3ms)[0m  [1m[34mSELECT  "offers".* FROM "offers" WHERE "offers"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "offers"[0m
+Started POST "/offers" for 127.0.0.1 at 2020-03-09 19:45:56 -0300
+Processing by OffersController#create as HTML
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "offers" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.6ms)[0m  [1m[31mDELETE FROM "offers"[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO "offers" ("created_at", "updated_at", "id") VALUES ('2020-03-09 22:48:56.267233', '2020-03-09 22:48:56.267233', 980190962)[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO "offers" ("created_at", "updated_at", "id") VALUES ('2020-03-09 22:48:56.267233', '2020-03-09 22:48:56.267233', 298486374)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mselect MAX("id") from "offers"[0m
+  [1m[35m (25.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "offers" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------
+OffersControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[36mOffer Load (0.5ms)[0m  [1m[34mSELECT  "offers".* FROM "offers" WHERE "offers"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/offers/980190962/edit" for 127.0.0.1 at 2020-03-09 19:48:56 -0300
+Processing by OffersController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mOffer Load (0.6ms)[0m  [1m[34mSELECT  "offers".* FROM "offers" WHERE "offers"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering offers/edit.html.erb within layouts/application
+  Rendered offers/edit.html.erb within layouts/application (13.4ms)
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 0.6ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "offers" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "offers"[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "offers" ("created_at", "updated_at", "id") VALUES ('2020-03-09 22:50:46.363761', '2020-03-09 22:50:46.363761', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "offers" ("created_at", "updated_at", "id") VALUES ('2020-03-09 22:50:46.363761', '2020-03-09 22:50:46.363761', 298486374)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mselect MAX("id") from "offers"[0m
+  [1m[35m (28.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "offers" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+---------------------------
+OfferTest: test_the_enables
+---------------------------
+  [1m[36mOffer Load (1.0ms)[0m  [1m[34mSELECT  "offers".* FROM "offers" WHERE "offers"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------
+OffersControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "offers" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.8ms)[0m  [1m[31mDELETE FROM "offers"[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO "offers" ("created_at", "updated_at", "id") VALUES ('2020-03-09 22:51:28.053330', '2020-03-09 22:51:28.053330', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "offers" ("created_at", "updated_at", "id") VALUES ('2020-03-09 22:51:28.053330', '2020-03-09 22:51:28.053330', 298486374)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mselect MAX("id") from "offers"[0m
+  [1m[35m (41.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "offers" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+---------------------------
+OfferTest: test_the_enables
+---------------------------
+  [1m[36mOffer Load (1.0ms)[0m  [1m[34mSELECT  "offers".* FROM "offers" WHERE "offers"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------
+OffersControllerTest: test_should_update_offer
+----------------------------------------------
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "offers" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.6ms)[0m  [1m[31mDELETE FROM "offers"[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO "offers" ("created_at", "updated_at", "id") VALUES ('2020-03-09 22:51:55.629908', '2020-03-09 22:51:55.629908', 980190962)[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO "offers" ("created_at", "updated_at", "id") VALUES ('2020-03-09 22:51:55.629908', '2020-03-09 22:51:55.629908', 298486374)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mselect MAX("id") from "offers"[0m
+  [1m[35m (30.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "offers" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------
+OffersControllerTest: test_should_get_new
+-----------------------------------------
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "offers" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "offers"[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "offers" ("created_at", "updated_at", "id") VALUES ('2020-03-09 22:52:27.467980', '2020-03-09 22:52:27.467980', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "offers" ("created_at", "updated_at", "id") VALUES ('2020-03-09 22:52:27.467980', '2020-03-09 22:52:27.467980', 298486374)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mselect MAX("id") from "offers"[0m
+  [1m[35m (26.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "offers" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------
+OffersControllerTest: test_should_update_offer
+----------------------------------------------
+  [1m[36mOffer Load (0.4ms)[0m  [1m[34mSELECT  "offers".* FROM "offers" WHERE "offers"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started PATCH "/offers/980190962" for 127.0.0.1 at 2020-03-09 19:52:27 -0300
+Processing by OffersController#update as HTML
+  Parameters: {"offer"=>{"advertiser_name"=>"Test", "url"=>"http://lucasramos.com", "description"=>"123", "starts_at"=>"2020-03-09 19:52:27 -0300", "ends_at"=>"2020-03-10 19:52:27 -0300", "premium"=>"true"}, "id"=>"980190962"}
+  [1m[36mOffer Load (0.4ms)[0m  [1m[34mSELECT  "offers".* FROM "offers" WHERE "offers"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.8ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "offers" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.6ms)[0m  [1m[31mDELETE FROM "offers"[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO "offers" ("created_at", "updated_at", "id") VALUES ('2020-03-09 22:52:46.476931', '2020-03-09 22:52:46.476931', 980190962)[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO "offers" ("created_at", "updated_at", "id") VALUES ('2020-03-09 22:52:46.476931', '2020-03-09 22:52:46.476931', 298486374)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mselect MAX("id") from "offers"[0m
+  [1m[35m (25.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "offers" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+---------------------------
+OfferTest: test_the_enables
+---------------------------
+  [1m[36mOffer Load (0.6ms)[0m  [1m[34mSELECT  "offers".* FROM "offers" WHERE "offers"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------
+OffersControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[36mOffer Load (0.6ms)[0m  [1m[34mSELECT  "offers".* FROM "offers" WHERE "offers"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/offers/980190962/edit" for 127.0.0.1 at 2020-03-09 19:54:02 -0300
+Processing by OffersController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mOffer Load (0.7ms)[0m  [1m[34mSELECT  "offers".* FROM "offers" WHERE "offers"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering offers/edit.html.erb within layouts/application
+  Rendered offers/edit.html.erb within layouts/application (14.4ms)
+Completed 500 Internal Server Error in 30ms (ActiveRecord: 0.7ms)
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "offers" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.4ms)[0m  [1m[31mDELETE FROM "offers"[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "offers" ("created_at", "updated_at", "id") VALUES ('2020-03-09 22:54:04.917650', '2020-03-09 22:54:04.917650', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "offers" ("created_at", "updated_at", "id") VALUES ('2020-03-09 22:54:04.917650', '2020-03-09 22:54:04.917650', 298486374)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mselect MAX("id") from "offers"[0m
+  [1m[35m (36.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "offers" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+---------------------------
+OfferTest: test_the_enables
+---------------------------
+  [1m[36mOffer Load (0.4ms)[0m  [1m[34mSELECT  "offers".* FROM "offers" WHERE "offers"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------
+OffersControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[36mOffer Load (0.4ms)[0m  [1m[34mSELECT  "offers".* FROM "offers" WHERE "offers"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m

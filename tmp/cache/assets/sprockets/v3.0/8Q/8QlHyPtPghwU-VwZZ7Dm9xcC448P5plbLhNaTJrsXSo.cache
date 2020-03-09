@@ -1,0 +1,22 @@
+I"Ó(function() {
+  LMY.Form = {
+    target: '',
+    initialize: function(form_id) {
+      return LMY.Form.target = $(form_id);
+    },
+    submit: function() {
+      var $form;
+      $form = LMY.Form.target;
+      return $form.submit();
+    },
+    listener_ajax: function() {
+      var $form;
+      $form = LMY.Form.target;
+      return $form.on('ajax:beforeSend', function(xhr, data) {
+        return $form.addClass('ajax-loading');
+      });
+    }
+  };
+
+}).call(this);
+:ET

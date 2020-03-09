@@ -1,0 +1,26 @@
+I"‡(function() {
+  LMY.Form = {
+    target: '',
+    initialize: function(form_id) {
+      LMY.Form.target = $(form_id);
+      LMY.Form.listener_ajax();
+      return console.log('LMY.Form.initialize', form_id);
+    },
+    submit: function() {
+      var $form;
+      $form = LMY.Form.target;
+      $form.submit();
+      return console.log('LMY.Form.submit', $form);
+    },
+    listener_ajax: function() {
+      var $form;
+      $form = LMY.Form.target;
+      $form.on('ajax:beforeSend', function(xhr, data) {
+        return $form.addClass('ajax-loading');
+      });
+      return console.log('LMY.Form.listener_ajax', $form);
+    }
+  };
+
+}).call(this);
+:ET
